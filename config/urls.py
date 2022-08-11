@@ -20,3 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls'))
 ]
+
+admin.site.site_header = 'Django Blog'
+admin.site.site_title="Admin Panel"
+admin.site.index_title="Welcome to Admin Portal"
