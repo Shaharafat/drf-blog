@@ -10,3 +10,7 @@ class GetPosts(generics.ListAPIView):
   queryset = Post.objects.all()
   serializer_class = PostSerializer
   
+class PostDetails(generics.RetrieveUpdateDestroyAPIView):
+  serializer_class = PostSerializer
+  lookup_field='slug'
+  queryset = Post.objects.all()
