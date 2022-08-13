@@ -39,10 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third Party
     'rest_framework',
+    'rest_framework.authtoken', 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth', # Generates token on the server
     # Local
     'users',
     'posts' 
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
