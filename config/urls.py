@@ -15,15 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include('posts.urls', namespace='posts')),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/v1/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
+    path("admin/", admin.site.urls),
+    path("api/v1/", include("posts.urls", namespace="posts")),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),
+    path(
+        "api/v1/dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")
+    ),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "docs/",
+        SpectacularSwaggerView.as_view(
+            template_name="swagger-ui.html", url_name="schema"
+        ),
+        name="swagger-ui",
+    ),
 ]
 
-admin.site.site_header = 'Django Blog'
-admin.site.site_title="Admin Panel"
-admin.site.index_title="Welcome to Admin Portal"
+admin.site.site_header = "Django Blog"
+admin.site.site_title = "Admin Panel"
+admin.site.index_title = "Welcome to Admin Portal"
